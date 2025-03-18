@@ -1,0 +1,16 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATATAN BUAT SEEDER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+!!!!!!!! Dikasih nomor BERURUTAN disetiap file supaya tau yang mana dulu dijalanin.... dan GAK EROR pas ngejalanin seeder !!!!!!!
+
+## Kalo error atau gak kebaca, run :
+-> composer dumpautoload
+
+## comment per-seederan, run :
+-> php artisan db:seed
+-> php artisan db:seed --class=_1RolesTableSeeder
+
+
+
+
+
+

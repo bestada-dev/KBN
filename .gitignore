@@ -1,0 +1,23 @@
+/node_modules
+/public/hot
+/public/storage
+/public/storage
+/public/detail_photos/*
+/storage/*.key
+/storage/pail
+/storage
+/storage/app/public
+/kebutuhan/*.pdf
+/app/Http/Controllers/GenerateDynamicFormController.php
+/resources/views/pages/generate-dynamic-form
+/resources/views/components
+#/PR/
+/TEST UPLOAD
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log

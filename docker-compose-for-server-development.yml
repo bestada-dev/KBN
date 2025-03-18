@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile-for-development
+        image: development_kbn_image
+        container_name: development_kbn_container
+        restart: unless-stopped
+        ports:
+            - "7070:7070" # Sesuaikan dengan port yang digunakan oleh Laravel di Dockerfileeeeeeee CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=7070", "--no-interaction"]
+
+        # network_mode: "host"
+        volumes:
+            - ./:/var/www/html # Menyinkronkan seluruh direktori proyek Laravel dengan direktori /var/www/html di dalam kontainer
+        # depends_on:
+        #     - db
+
+######################### JIKA TIDAK ADA STORAGE:LINK NYA MAKA JALANKAN CODE DIBAWAH DARI POIN (1-6) #####################
+# 1. ls -l storage/app/public
+# 2. sudo rm storage/app/public
+# 3. sudo mkdir -p storage/app/public
+# 4. sudo chmod -R 775 storage
+# 5. docker compose -f docker-compose-for-server-production.yml exec web bash
+# 6. php artisan storage:link
+# docker compose -f docker-compose-for-server-development.yml up --build  -d
+# docker compose -f docker-compose-for-server-development.yml exec web bash
+# docker compose -f docker-compose-for-server-development.yml stop web
+# docker compose -f docker-compose-for-server-development.yml rm web
+# docker compose -f docker-compose-for-server-development.yml up --build -d web
+# docker compose -f docker-compose-for-server-development.yml exec db mysql -u root -p

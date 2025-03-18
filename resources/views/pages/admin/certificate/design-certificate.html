@@ -1,0 +1,188 @@
+<html>
+<head>
+    <title>Certificate Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+        }
+        .actions button {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        #zoomLevel {
+            margin-left: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #certificateContainer {
+            background-color: white;
+            width: 1152px;
+            height: 864px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transform-origin: center center;
+            transition: transform 0.2s ease;
+        }
+        .certificate {
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .certificate h2 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .certificate h3 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .certificate p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .certificate .name {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d4af37;
+            margin: 20px 0;
+        }
+        .certificate .details {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .certificate .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .certificate .signatures .signature {
+            text-align: center;
+        }
+        .certificate .logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .certificate .logos img {
+            height: 100px;
+        }
+        .certificate .qr-code {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .certificate .qr-code img {
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Pratinjau Sertifikat</h1>
+        <div class="actions">
+            <button onclick="zoomIn()">Zoom In</button>
+            <button onclick="zoomOut()">Zoom Out</button>
+            <span id="zoomLevel">100%</span>
+            <button onclick="downloadCertificate()">Download</button>
+        </div>
+    </div>
+    <div id="certificateContainer">
+        <div class="certificate">
+            <div class="logos">
+                <img alt="Kinarya Alihdaya Mandiri Logo" src="https://storage.googleapis.com/a1aa/image/h3qOx75n397jI1Neq2j7Uoat1U4XHkc4z91CZfXT1FgjG2uTA.jpg" width="150">
+                <img alt="PT. Creative Logo" src="https://storage.googleapis.com/a1aa/image/HlnPu7DM5fVJOyOoOldO8oxYMHot8n7WhAgujV2JZydTDb3JA.jpg" width="100">
+            </div>
+            <h2>CERTIFICATE</h2>
+            <h3>OF PARTICIPATION</h3>
+            <p>252/DIR-KP/TC-01/VI/2024</p>
+            <p>This certificate is proudly presented to</p>
+            <div class="name">ANGGUN GINA</div>
+            <div class="details">For participating in the Training of Trainer held by PT. Creative on 20 - 21 May 2024.</div>
+            <div class="signatures">
+                <div class="signature">
+                    <p>ARIADI NURATMOJO</p>
+                    <p>Direktur PT. KAM</p>
+                </div>
+                <div class="signature">
+                    <p>ADRIANSYAH</p>
+                    <p>Trainer</p>
+                </div>
+            </div>
+            <div class="qr-code">
+                <img alt="QR Code" src="https://storage.googleapis.com/a1aa/image/BZaWnxOfZq3pP6tUwRd0ZztkuaSceWXltOzkjV143OylG2uTA.jpg" width="100">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        let scale = 1;
+
+        function updateZoomLevel() {
+            document.getElementById('zoomLevel').textContent = `${Math.round(scale * 100)}%`;
+        }
+
+        function zoomIn() {
+            scale += 0.1;
+            document.getElementById('certificateContainer').style.transform = `scale(${scale})`;
+            updateZoomLevel();
+        }
+
+        function zoomOut() {
+            if (scale > 0.1) {
+                scale -= 0.1;
+                document.getElementById('certificateContainer').style.transform = `scale(${scale})`;
+                updateZoomLevel();
+            }
+        }
+
+        function downloadCertificate() {
+            const certificateContainer = document.getElementById('certificateContainer');
+
+            // Temporarily reset scale for download
+            const originalScale = scale;
+            scale = 1;
+            certificateContainer.style.transform = `scale(${scale})`;
+
+            html2canvas(certificateContainer).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'certificate.png';
+                link.href = canvas.toDataURL();
+                link.click();
+
+                // Revert scale to previous zoom level
+                scale = originalScale;
+                certificateContainer.style.transform = `scale(${scale})`;
+                updateZoomLevel();
+            });
+        }
+    </script>
+</body>
+</html>

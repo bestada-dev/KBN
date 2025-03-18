@@ -1,0 +1,47 @@
+version: "3.8"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile-for-production
+        image: production_kbn_image
+        container_name: production_kbn_container
+        restart: unless-stopped
+        ports:
+            - "2100:2100"  # Sesuaikan dengan port yang digunakan oleh Laravel di Dockerfileeeeeeee CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=2100", "--no-interaction"]
+        # network_mode: "host"
+        volumes:
+            - ./:/var/www/html # Menyinkronkan seluruh direktori proyek Laravel dengan direktori /var/www/html di dalam kontainer
+        depends_on:
+            - db
+
+    db:
+        build:
+            context: .
+            dockerfile: Dockerfile-mysql
+        image: mysql:latest
+        container_name: production_kbn_mysql_container
+        restart: unless-stopped
+        ports:
+            - "3311:3306" # Adjust to the desired port for MySQL
+        environment:
+            MYSQL_DATABASE: kbn.bestada.co.id
+            MYSQL_ROOT_PASSWORD: asdfgh
+        volumes:
+            - ./local-db-data:/var/lib/mysql
+
+######################### JIKA TIDAK ADA STORAGE:LINK NYA MAKA JALANKAN CODE DIBAWAH DARI POIN (1-6) #####################
+# 1. ls -l storage/app/public
+# 2. sudo rm storage/app/public
+# 3. sudo mkdir -p storage/app/public
+# 4. sudo chmod -R 775 storage
+# 5. docker compose -f docker-compose-for-server-production.yml exec web bash
+# 6. php artisan storage:link
+# docker compose -f docker-compose-for-server-production.yml up --build  -d
+# docker compose -f docker-compose-for-server-production.yml exec web bash
+# php artisan migrate
+# php artisan db:seed
+# docker compose -f docker-compose-for-server-production.yml stop web
+# docker compose -f docker-compose-for-server-production.yml rm web
+# docker compose -f docker-compose-for-server-production.yml up --build -d web
+# docker compose -f docker-compose-for-server-production.yml exec db mysql -u root -p

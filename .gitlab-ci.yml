@@ -1,0 +1,62 @@
+image: lorisleiva/laravel-docker:stable
+
+composer:
+  stage: build
+  script:
+      - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+      - cp .env.example .env
+      - php artisan key:generate
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - vendor/
+      - .env
+  cache:
+      key: ${CI_COMMIT_REF_SLUG}-composer
+      paths:
+      - vendor/
+
+phpunit:
+  stage: test
+  dependencies:
+    - composer
+  script:
+    - echo "Skip phpunit test"
+    # - phpunit --debug --coverage-text --colors=never
+
+codestyle:
+  stage: test
+  dependencies: []
+  script:
+    - echo "Skip codestyle test"
+    # - phpcs --config-set ignore_warnings_on_exit 1
+    # - phpcs --standard=PSR2 --extensions=php --ignore=app/views,app/storage,app/tests,app/filters.php,app/routes.php,packages/,app/Providers/,app/Console/,app/services/,http/Middleware/,app/Exceptions/,app/Events/ app/
+
+.init_ssh: &init_ssh |
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+staging:
+  stage: deploy
+  script:
+    - *init_ssh
+    - ssh $SSH_USER@$SSH_HOST -p $SSH_PORT "cd /home/$SSH_USER && sh ./deploy_laravel.sh development ancol.ns2solution.com ancol.ns2solution.com"
+  environment:
+    name: staging
+    url: https://ancol.ns2solution.com
+  only:
+    - development
+
+# production:
+#   stage: deploy
+#   script:
+#     - *init_ssh
+#     - ssh $PROD_SSH_USER@$PROD_SSH_HOST -p $PROD_SSH_PORT "cd /home/$PROD_SSH_USER && sh ./deploy_laravel.sh master api.mp.edia.io api.mp.edia.io"
+#   environment:
+#     name: production
+#     url: https://api.mp.edia.io
+#   only:
+#     - master

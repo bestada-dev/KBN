@@ -1,0 +1,104 @@
+###################### DENGAN SCEDHULE RUN ##################
+FROM php:7.4-fpm
+
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libmcrypt-dev \
+    libonig-dev \
+    locales \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl \
+    libzip-dev \
+    libmagickwand-dev --no-install-recommends && \
+    docker-php-ext-configure gd --with-jpeg --with-freetype && \
+    docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip && \
+    pecl install imagick && \
+    docker-php-ext-enable imagick && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy custom php.ini configuration
+COPY php.ini /usr/local/etc/php/
+
+# Copy project files
+COPY . /var/www/html
+
+# Set working directory and permissions
+WORKDIR /var/www/html
+RUN chown -R www-data:www-data /var/www/html/storage && \
+    chmod -R 775 /var/www/html/storage
+
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Set entrypoint script as the entrypoint for the container
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+# Expose port 8005
+EXPOSE 8081
+
+# Command to start Laravel development server
+CMD ["sh", "-c", "php artisan schedule:run --no-interaction & php artisan serve --host=0.0.0.0 --port=8081 --no-interaction"]
+
+
+## Jika baru pertama kali folder storage belum di buat, maka jalan kan perintah berikut untuk membuat dan memberi hak akses
+# mkdir storage && chmod -R 755 storage && mkdir -p storage/framework/{sessions,views,cache} && chmod -R 775 storage/framework
+
+###################### TANPA SCHEDULE RUN #########################
+# FROM php:7.4-fpm
+
+# # Install system dependencies and PHP extensions
+# RUN apt-get update && apt-get install -y \
+#     build-essential \
+#     libpng-dev \
+#     libjpeg62-turbo-dev \
+#     libfreetype6-dev \
+#     libmcrypt-dev \
+#     libonig-dev \
+#     locales \
+#     zip \
+#     jpegoptim optipng pngquant gifsicle \
+#     vim \
+#     unzip \
+#     git \
+#     curl \
+#     libzip-dev && \
+#     docker-php-ext-configure gd --with-jpeg --with-freetype && \
+#     docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip && \
+#     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+#     apt-get clean && \
+#     rm -rf /var/lib/apt/lists/*
+
+# # Copy custom php.ini configuration
+# COPY php.ini /usr/local/etc/php/
+
+# # Copy project files
+# COPY . /var/www/html
+
+# # Set working directory and permissions
+# WORKDIR /var/www/html
+# RUN chown -R www-data:www-data /var/www/html/storage && \
+#     chmod -R 775 /var/www/html/storage
+
+# # Copy entrypoint script
+# COPY docker-entrypoint.sh /usr/local/bin/
+# RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# # Set entrypoint script as the entrypoint for the container
+# ENTRYPOINT ["docker-entrypoint.sh"]
+
+# # Expose port 8000
+# EXPOSE 8005
+
+# # Command to start Laravel development server
+# CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8005", "--no-interaction"]

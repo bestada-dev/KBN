@@ -1,0 +1,13 @@
+
+> docker compose up --build  -d atau docker compose build --no-cache ( harus compose up -d)
+
+# kalo ada error frameworks logs
+> docker-compose exec web bash
+> sudo rm -f bootstrap/cache/config.php
+
+
+
+> cp .env.example .env
+> php artisan migrate
+> php artisan db:seed
+> php artisan storage:link => alternatif = docker-compose exec web bash LALU cd public LALU rm storage

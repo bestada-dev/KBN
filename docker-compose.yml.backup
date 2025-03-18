@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: pertamc_image
+        container_name: pertamc_container
+        restart: unless-stopped
+        ports:
+            - "8010:8000" # Sesuaikan dengan port yang digunakan oleh Laravel
+        network_mode: "host"
+        volumes:
+            - ./:/var/www/html # Menyinkronkan seluruh direktori proyek Laravel dengan direktori /var/www/html di dalam kontainer
+        depends_on:
+            - db
+
+    db:
+        build:
+            context: .
+            dockerfile: Dockerfile-mysql
+        image: mysql:latest
+        container_name: pertamc_mysql_container
+        restart: unless-stopped
+        ports:
+            - "3311:3306" # Adjust to the desired port for MySQL
+        environment:
+            MYSQL_DATABASE: pertamc.bestada.co.id
+            MYSQL_ROOT_PASSWORD: asdfgh

@@ -1,0 +1,14 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CATATAN BUAT MIGRATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+!!!!!! Dikasih nomor BERURUTAN disetiap file supaya tau yang mana dulu dijalanin.... dan GAK EROR pas ngejalanin migration !!!!!!
+
+## comment per-migrationan, run :
+-> php artisan make:migration create_access_token_table --create=access_token
+-> php artisan make:migration add_role_id_column_to_users_table --table=users
+-> php artisan migrate:rollback
+-> php artisan migrate:rollback --step=1
+-> php artisan migrate:rollback --path=/database/migrations/2024_08_02_161254_create_information_table.php
+-> php artisan migrate:refresh
+-> php artisan migrate:status
+-> php artisan migrate --path=/database/migrations/2024_08_06_135006_create_incident_reports_table

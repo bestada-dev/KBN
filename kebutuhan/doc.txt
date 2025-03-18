@@ -1,0 +1,108 @@
+PR
+return view('pages.landing-page.home', get_defined_vars())->with('zoning', $result);
+git checkout c9809a1adbb45183946c3e887538361a9f6f8c8e -- resources/views/pages/landing-page/home.blade.php
+
+##################################################################
+############## COMMAND BUAT BUILD DOCKER DARI AWAL ###############
+##################################################################
+docker build --no-cache -t pertamc_hse_image . -f Dockerfile
+docker build --no-cache -t pertamc_hse_image_mysql . -f Dockerfile-mysql
+docker run -d -p 8010:8000 --name pertamc_hse_container pertamc_hse_image
+docker run -d -p 3311:3306 --name pertamc_hse_mysql_container pertamc_hse_image_mysql
+docker exec -it pertamc_hse_mysql_container sh
+
+>sudo docker build --no-cache -t pertamc_hse_image .
+>sudo docker run -d -p 4000:8000 --name pertamc_hse_container pertamc_hse_image
+>sudo docker exec -it pertamc_hse_container sh php artisan make:import EmployeesImport
+
+
+ATAU
+
+docker-compose down
+docker compose up --build  -d
+docker compose build --no-cache
+docker-compose exec web bash
+docker inspect <container_id>
+docker network ls
+docker exec -it pertamc_container bash
+docker stop pertamc_container
+docker rm pertamc_container
+
+
+
+
+##################################################################
+################ COMMAND LARAVEL YG BIASA DIGUNAIN #############
+#################################################################
+
+php artisan migrate
+php artisan migrate --path=/database/migrations/2024_01_15_113141_add_currency_to_sales_orders.php
+php artisan migrate:rollback --step=1
+php artisan migrate:rollback --path=/database/migrations/2024_08_12_142532_create_forms_table.php
+php artisan db:seed --class=ProductTableSeeder
+php artisan cache:clear             # Clear application cache
+php artisan config:cache           # Cache the application configuration
+php artisan route:cache            # Cache the application routes
+php artisan view:clear             # Clear compiled view files
+php artisan route:clear
+php artisan route:cache
+composer dump-autoload
+php artisan cache:forget spatie.permission.cache
+php artisan cache:clear
+
+// for docker
+sudo rm -f bootstrap/cache/config.php
+# buat bikin storage:link di docker
+docker-compose exec web bash
+ls -l public/storage
+rm public/storage
+chown -R $USER:www-data public
+chown -R $USER:www-data storage
+chown -R $USER:www-data bootstrap/cache
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+chmod -R 775 public
+php artisan storage:link aaaaatauuuu kalo gak bisa RUN => ln -s storage/app/public public/storage
+ls -l public/storage
+
+// cek php.ini
+php -i | grep -E 'upload_max_filesize|post_max_size|memory_limit|max_execution_time|max_input_time'
+
+// for local
+sudo chown -R $USER:www-data public
+sudo chown -R $USER:www-data storage
+sudo chown -R $USER:www-data bootstrap/cache
+chmod -R 775 public
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+
+##################################################################
+######## COMMAND BUAT GENERATE DATA, BUAT BISA MASUK WEBNYA  #####
+#################################################################
+1. sudo chmod -R 755 storage && cd storage/
+2. sudo mkdir -p framework/{sessions,views,cache}
+3. sudo chmod -R 775 framework
+4. docker compose up --build  -d
+5. docker-compose exec web bash
+
+6. cp .env.example .env
+7.  php artisan migrate
+8. php artisan db:seed
+9. php artisan storage:link => alternatif = docker-compose exec web bash LALU cd public LALU rm storage
+10. php artisan serve (KALO PAKE DOCKER GAK USAH JALANIN INI!!!! TINGGAL MASUK AJA localhost:8001)
+
+### LOGIN ###
+email : admin@bestada.com
+password : asdfgh
+
+##################################################################
+####################### ALL ABOUT LARAVEL ########################
+#################################################################
+1. Auth:: <- jika loginnya mau pake ini dengan fungsi ajax/fetch maka harus dengan
+laravel SANCTUM tapiiiiiiiiiiiiiii kalo gak mau pake ajax/fetch maka bisa pake login blade langsung request..
+soalnyaaaaaa ada issue Sessions dll
+
+cd storage/
+mkdir -p framework/{sessions,views,cache}
+chmod -R 775 framework
+

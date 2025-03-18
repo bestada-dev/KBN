@@ -1,0 +1,9 @@
+# Use the official MySQL image from Docker Hub
+FROM mysql:latest
+
+# Expose port 3306 (adjust to the desired port)
+EXPOSE 3306
+
+# Set environment variables for database configuration
+ENV MYSQL_DATABASE kbn.bestada.co.id
+ENV MYSQL_ROOT_PASSWORD asdfgh

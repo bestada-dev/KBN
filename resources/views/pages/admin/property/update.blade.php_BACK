@@ -1,0 +1,793 @@
+@extends('layouts.app')
+
+@section('title', 'Kinarya Alihdaya Mandiri')
+
+@section('breadcumbTitle', 'pengembangan')
+
+@section('breadcumbSubtitle', 'pengembangan Create')
+
+@section('content')
+    @include('pages.register.css_upload_file')
+    @include('pages.admin.property.style_property')
+    <article>
+        <div class="TABLE-WITHOUT-SEARCH-BAR p-0">
+            <div class="HEADER">
+                <a href="{{ url('/superadmin/property') }}"><img src="{{ asset('assets/back.png') }}" alt="Back"></a>
+                <h5>Kembali</h5>
+            </div>
+            <form id="form_edit_pengembangan" class="p-4 pt-3" enctype="multipart/form-data">
+                <input type="hidden" name="property_id" id="property_id" value="{{$data_edit->id}}">
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="category_id">Category<span style="color: red">(*)</span></label>
+                    <select name="category_id" id="category_id" class="form-select">
+                        <option value="">Select Category</option>
+                        @foreach ($category as $cat)
+                            <option value="{{ $cat->id }}" {{$data_edit->category_id == $cat->id ? 'selected' : ''}} >{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                    <span class="text-danger error-message" id="category_id-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="zona_id">Zoning<span style="color: red">(*)</span></label>
+                    <select name="zona_id" id="zona_id" class="form-select">
+                        <option value="">Select Zoning</option>
+                        @foreach ($zoning as $zon)
+                            <option value="{{ $zon->id }}" {{$data_edit->zona_id == $zon->id ? 'selected' : ''}}>{{ $zon->zone_name }} - ({{ $zon->address }})</option>
+                        @endforeach
+                    </select>
+                    <span class="text-danger error-message" id="zona_id-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="property_address">Property Address<span style="color: red">(*)</span></label>
+                    <textarea name="property_address" id="property_address" class="form-control" cols="10" rows="5"
+                        placeholder="Enter Location">{{$data_edit->property_address ? $data_edit->property_address : ''}}</textarea>
+                    <span class="text-danger error-message" id="property_address-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="property_location_link">Property Location Point Link<span
+                            style="color: red">(*)</span></label>
+                    <textarea name="property_location_link" id="property_location_link" class="form-control" cols="10" rows="3"
+                        placeholder="Enter Property Location Point Link">{{$data_edit->property_location_link ? $data_edit->property_location_link : ''}}</textarea>
+                    <span class="text-danger error-message" id="property_location_link-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="block">Block<span style="color: red">(*)</span></label>
+                    <input type="text" name="block" id="block" class="form-control" placeholder="Enter Block" value="{{$data_edit->block ? $data_edit->block : ''}}">
+                    <span class="text-danger error-message" id="block-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="type">Type<span style="color: red">(*)</span></label>
+                    <div style="margin-top: 5px;">
+                        <label>
+                            <input type="radio" class="radio" name="type" value="Bounded"
+                                {{ old('type', $data_edit->type) == 'Bounded' ? 'checked' : '' }}>
+                            Bounded
+                        </label>
+                        <label style="margin-left: 20px;">
+                            <input type="radio" class="radio" name="type" value="General"
+                                {{ old('type', $data_edit->type) == 'General' ? 'checked' : '' }}>
+                            General
+                        </label>
+                    </div>
+                    <span class="text-danger error-message" id="type-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="land_area">Land Area<span style="color: red">(*)</span></label>
+                    <div style="margin-top: 5px;">
+                        <div style="position: relative;">
+                            <input type="text" class="form-control" name="land_area" id="land_area"
+                                placeholder="Enter Land Area" style="padding-right: 40px; width: 100%;" value="{{$data_edit->land_area ? $data_edit->land_area : ''}}" />
+                            <span
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #555;">
+                                M²
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-danger error-message" id="land_area-error"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="building_area">Building Area<span style="color: red">(*)</span></label>
+                    <div style="margin-top: 5px;">
+                        <div style="position: relative;">
+                            <input type="text" class="form-control" name="building_area" id="building_area"
+                                placeholder="Enter Building Area" style="padding-right: 40px; width: 100%;" value="{{$data_edit->building_area ? $data_edit->building_area : ''}}" />
+                            <span
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #555;">
+                                M²
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-danger error-message" id="building_area-error"></span>
+                </div>
+
+                <div id="container-multiple"
+                style="border: 1px solid #ced4da;padding: 15px;border-radius: 5px;margin-top: 20px;">
+                @foreach ($data_edit['getFacility'] as $fc)
+                        <div class="form-group">
+                            <label for="facility">Facility<span style="color: red">(*)</span></label>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <input type="text" name="facility[]" id="facility" class="form-control"
+                                        placeholder="Enter Facility" value="{{$fc->facility ? $fc->facility : '-'}}">
+                                    <span class="text-danger error-message" id="facility-error"></span>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-danger btn-sm delete-btn" type="button" disabled>
+                                        <i class="bi bi-trash"></i>&nbsp;&nbsp; Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                <div class="col-md-12 d-flex justify-content-end" style="margin-top: 15px">
+                    <button class="btn btn-success btn-sm" type="button" id="addMoreBtn">
+                        <i class="bi bi-plus"></i> Add More
+                    </button>
+                </div>
+
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="type_upload">Type<span style="color: red">(*)</span></label>
+                    <div style="margin-top: 5px;">
+                        <label>
+                            <input type="radio" class="radio" name="type_upload" value="link" {{ old('type_upload', $data_edit->type_upload) == 'link' ? 'checked' : '' }}>
+                            Link
+                        </label>
+                        <label style="margin-left: 20px;">
+                            <input type="radio" class="radio" name="type_upload" value="upload_vidio" {{ old('type_upload', $data_edit->type_upload) == 'upload_vidio' ? 'checked' : '' }}>
+                            Upload Vidio
+                        </label>
+                    </div>
+                    <span class="text-danger error-message" id="type-error"></span>
+                </div>
+
+
+                <div class="form-group" id="show_if_type_link" style="margin-top: 15px; display: none;">
+                    <label for="url">Virtual Tour Link / Youtube Link<span style="color: red">(*)</span></label>
+                    <input type="text" name="url" id="url" class="form-control" placeholder="Enter url">
+                    <span class="text-danger error-message" id="url-error"></span>
+                </div>
+
+                <div class="form-group" id="show_if_type_upload_vidio" style="margin-top: 15px; display: none;">
+                    <label for="vidio" class="form-label">Video</label>
+                    <div class="file-upload-container">
+                        <input type="file" class="file-input" id="vidio" name="vidio" accept="video/mp4, video/webm, video/ogg" hidden>
+                        <div class="file-upload-box" role="button" tabindex="0" onclick="document.getElementById('vidio').click();">
+                            <div class="file-details">
+                                <i class="bi bi-file-earmark"></i>
+                                <div>
+                                    @if (!empty($data_edit['vidio']))
+                                        <span id="videoFileName" class="file-name-size">{{$data_edit['vidio']}}</span>
+                                    @else
+                                        <span id="videoFileName" class="file-name-size">Pilih file</span>
+                                    @endif
+                                    <span id="videoFileSize" class="file-size"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-icon ms-2" id="viewVideoButton" data-bs-toggle="modal" data-bs-target="#videoPreviewModal">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button type="button" class="btn-icon ms-2" id="resetVideoButton">
+                            <i class="bi bi-save2"></i>
+                        </button>
+                    </div>
+                    <p class="upload-info">Ukuran maksimum: 50 MB. Format file: MP4, WebM, atau Ogg.</p>
+                    <span class="text-danger error-message" id="vidio-error"></span>
+                </div>
+
+                <!-- Modal for Video Preview -->
+                <div class="modal fade" id="videoPreviewModal" tabindex="-1" aria-labelledby="videoPreviewModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="videoPreviewModalLabel">Preview Video </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <video id="modalVideoPreview" controls style="max-width: 100%; max-height: 400px;" src="{{ !empty($data_edit['vidio']) ? asset('/videos/'.$data_edit['vidio']) : '' }}"></video>
+                                <p id="noVideoText" style="{{ !empty($data_edit['vidio']) ? 'display: none;' : 'display: block;' }}">Tidak ada video untuk ditampilkan.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- untuk mengetahui vidio ada atau kosong --}}
+                @if(!empty($data_edit['vidio']))
+                    <input type="hidden" id="show_vidio" value="{{ asset('/videos/'.$data_edit['vidio']) }}">
+                @else
+                    <input type="hidden" id="show_vidio" value="-">
+                @endif
+
+
+                <div class="form-group" style="margin-top: 15px">
+                    <label for="desc">Description <span style="color: red">(*)</span></label>
+                    <textarea name="desc" id="desc" class="form-control" cols="10" rows="5">{{ $data_edit->desc ?? '-' }}</textarea>
+                    <span class="text-danger error-message" id="desc-error"></span>
+                </div>
+
+                <!-- layout -->
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="layout" class="form-label">Layout</label>
+                    <div class="file-upload-container">
+                        <input type="file" class="file-input" id="layout" name="layout" accept="image/png, image/jpeg" hidden>
+                        <div class="file-upload-box" role="button" onclick="document.getElementById('layout').click();">
+                            <div class="file-details">
+                                <i class="bi bi-file-earmark"></i>
+                                <div>
+                                    @if (!empty($data_edit['layout']))
+                                        <span id="fileName" class="file-name-size">{{$data_edit['layout']}}</span>
+                                    @else
+                                        <span id="fileName" class="file-name-size">Pilih file</span>
+                                    @endif
+                                    {{-- <span id="fileName" class="file-name-size">Pilih file</span> --}}
+                                    <span id="fileSize" class="file-size"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-icon ms-2" id="viewButton" data-bs-toggle="modal" data-bs-target="#imagePreviewModal">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button type="button" class="btn-icon ms-2" id="resetButton">
+                            <i class="bi bi-save2"></i>
+                        </button>
+                    </div>
+                    <p class="upload-info">Ukuran maksimum: 5 MB. Format file: PNG atau JPG.</p>
+                    <span class="text-danger error-message" id="layout-error"></span>
+                </div>
+
+                <!-- Modal layout -->
+                <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="imagePreviewModalLabel">Preview Gambar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img id="modalImagePreview" src="{{ !empty($data_edit['layout']) ? asset('/layouts/'.$data_edit['layout']) : '' }}" alt="Preview Gambar" style="max-width: 100%; max-height: 400px; display: {{ !empty($data_edit['layout']) ? 'block' : 'none' }};">
+                                <p id="noImageText" style="{{ !empty($data_edit['layout']) ? 'display: none;' : 'display: block;' }}">Tidak ada gambar untuk ditampilkan.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="show_layout" value="{{ !empty($data_edit['layout']) ? asset('/layouts/'.$data_edit['layout']) : '-' }}">
+
+
+
+                <div id="detail-foto-container" class="detail-foto-wrapper">
+                    @foreach ($data_edit['getAttachment'] as $index => $detailFoto)
+                        <div class="detail-foto-item">
+                            <div class="form-group">
+                                <label for="detail_photo_{{ $index }}" class="form-label">Detail Photo</label>
+                                <div class="file-upload-container">
+                                    <input type="file" class="file-input" id="detail_photo_{{ $index }}" name="detail_photo[]" accept="image/png, image/jpeg">
+                                    <div class="file-upload-box" onclick="document.getElementById('detail_photo_{{ $index }}').click();">
+                                        <div class="file-details">
+                                            <i class="bi bi-file-earmark"></i>
+                                            <div>
+
+                                                <span class="file-name-size">Pilih file</span>
+                                                <span class="file-size"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-icon view-button" data-bs-toggle="modal" data-bs-target="#imagePreviewModal_{{ $index }}" onclick="showImagePreview('{{ asset('/detail_photos/'.$detailFoto['detail_photo']) }}', {{ $index }})">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button type="button" class="btn-icon reset-button">
+                                        <i class="bi bi-save2"></i>
+                                    </button>
+                                </div>
+                                <p class="upload-info">Ukuran maksimum: 5 MB. Format file: PNG atau JPG.</p>
+                                <span class="text-danger error-message"></span>
+                            </div>
+                        </div>
+
+                        <!-- Modal for this specific image -->
+                        <div class="modal fade" id="imagePreviewModal_{{ $index }}" tabindex="-1" aria-labelledby="imagePreviewModalLabel_{{ $index }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="imagePreviewModalLabel_{{ $index }}">Preview Gambar</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <img id="modalImagePreview_{{ $index }}" src="{{ asset('/detail_photos/'.$detailFoto['detail_photo']) }}" alt="Preview Gambar" class="modal-image-preview" style="display: none;">
+                                        <p id="noImageText_{{ $index }}" class="no-image-text">Tidak ada gambar untuk ditampilkan.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+
+                <div class="button-group">
+                    <button class="btn btn-success btn-sm" type="button" id="addMoreBtnDetailFoto">
+                        <i class="bi bi-plus"></i> Add More
+                    </button>
+                    <button class="btn btn-danger btn-sm delete-detail-foto-btn" type="button" id="deleteDetailFotoBtn"
+                        disabled>
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                </div>
+
+
+
+                <div class="btn-footer">
+                    <a href="{{ url()->previous() }}" class="btn btn-default btn-sm btn-block mt-4">Cancel</a>
+                    <button type="submit" class="btn btn-main btn-sm btn-block mt-4" id="btn-save">Save</button>
+                </div>
+            </form>
+        </div>
+    </article>
+
+@endsection
+
+@section('js')
+
+    <script>
+        $(document).ready(function () {
+            $('#form_edit_pengembangan').on('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                formData.append('token', getCurrentToken()['token']);
+
+                // Ambil ID dari elemen yang sesuai (misalnya input hidden untuk ID)
+                const propertyId = $('#property_id').val();
+
+                $.ajax({
+                    url: `{{ url('api/superadmin/property/edit') }}/${propertyId}`, // Adjust route
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('.error-message').text('');
+                    },
+                    success: function (response) {
+                        blockUI(response.message);
+                        setTimeout(function () {
+                            window.location.href = `{{ url('/superadmin/property') }}`;
+                        }, 2000); // 1 detik delay
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            $.each(errors, function (key, value) {
+                                $('#' + key + '-error').text(value[0]);
+                            });
+                        } else {
+                            let errorMessage = xhr.responseJSON?.message || 'An unexpected error occurred.';
+                            blockUI(errorMessage, _.ERROR);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    {{-- untuk preview gambar multiple --}}
+    <script>
+        function showImagePreview(imageUrl, index) {
+            const modalImagePreview = document.getElementById(`modalImagePreview_${index}`);
+            const noImageText = document.getElementById(`noImageText_${index}`);
+
+            if (imageUrl) {
+                modalImagePreview.src = imageUrl;
+                modalImagePreview.style.display = 'block';
+                noImageText.style.display = 'none';
+            } else {
+                modalImagePreview.style.display = 'none';
+                noImageText.style.display = 'block';
+            }
+        }
+
+        const container = document.getElementById('detail-foto-container');
+        const addMoreBtn = document.getElementById('addMoreBtnDetailFoto');
+        const deleteBtn = document.getElementById('deleteDetailFotoBtn');
+
+        let itemCount = {{ count($data_edit['getAttachment']) }}; // Menyesuaikan jumlah data yang ada
+
+        // Function to update delete button state
+        function updateDeleteButtonState() {
+            deleteBtn.disabled = container.children.length <= 1;
+        }
+
+        // Add More Button Click
+        addMoreBtn.addEventListener('click', function () {
+            itemCount++;
+
+            const newItem = document.createElement('div');
+            newItem.classList.add('detail-foto-item');
+
+            newItem.innerHTML = `
+                <div class="form-group">
+                    <label for="detail_photo_${itemCount}" class="form-label">Detail Photo</label>
+                    <div class="file-upload-container">
+                        <input type="file" class="file-input" id="detail_photo_${itemCount}" name="detail_photo[]" accept="image/png, image/jpeg">
+                        <div class="file-upload-box" onclick="document.getElementById('detail_photo_${itemCount}').click();">
+                            <div class="file-details">
+                                <i class="bi bi-file-earmark"></i>
+                                <div>
+                                    <span class="file-name-size">Pilih file</span>
+                                    <span class="file-size"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-icon view-button" data-bs-toggle="modal" data-bs-target="#imagePreviewModal_${itemCount}" onclick="showImagePreview('', ${itemCount})">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button type="button" class="btn-icon reset-button">
+                            <i class="bi bi-save2"></i>
+                        </button>
+                    </div>
+                    <p class="upload-info">Ukuran maksimum: 5 MB. Format file: PNG atau JPG.</p>
+                    <span class="text-danger error-message"></span>
+                </div>
+
+                <!-- Modal for this specific image -->
+                <div class="modal fade" id="imagePreviewModal_${itemCount}" tabindex="-1" aria-labelledby="imagePreviewModalLabel_${itemCount}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="imagePreviewModalLabel_${itemCount}">Preview Gambar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img id="modalImagePreview_${itemCount}" src="" alt="Preview Gambar" class="modal-image-preview" style="display: none;">
+                                <p id="noImageText_${itemCount}" class="no-image-text">Tidak ada gambar untuk ditampilkan.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(newItem);
+
+            // Update delete button state
+            updateDeleteButtonState();
+        });
+
+        // Delete Button Click
+        deleteBtn.addEventListener('click', function () {
+            if (container.children.length > 1) {
+                container.lastElementChild.remove();
+                updateDeleteButtonState();
+            }
+        });
+
+        // Update delete button state on load
+        updateDeleteButtonState();
+    </script>
+
+    {{-- untuk popup image  --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const layoutInput = document.getElementById('layout');
+            const fileNameDisplay = document.getElementById('fileName');
+            const fileSizeDisplay = document.getElementById('fileSize');
+            const modalImagePreview = document.getElementById('modalImagePreview');
+            const noImageText = document.getElementById('noImageText');
+            const resetButton = document.getElementById('resetButton');
+            const viewButton = document.getElementById('viewButton');
+            const showLayoutInput = document.getElementById('show_layout'); // Hidden input with the server-side image URL
+
+            // Function to update image preview
+            function updateImagePreview(file) {
+                if (!file) {
+                    modalImagePreview.style.display = 'none';
+                    noImageText.style.display = 'block';
+                    modalImagePreview.src = '';
+                    return;
+                }
+
+                if (typeof file === 'string') {
+                    // File is a URL (existing server-side image)
+                    modalImagePreview.src = file;
+                    modalImagePreview.style.display = 'block';
+                    noImageText.style.display = 'none';
+                } else {
+                    // File is a File object (newly uploaded file)
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        modalImagePreview.src = e.target.result;
+                        modalImagePreview.style.display = 'block';
+                        noImageText.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Handle file input change
+            layoutInput.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const fileSizeMB = file.size / 1024 / 1024;
+                    if (fileSizeMB > 5) {
+                        alert('Ukuran file terlalu besar (maksimum 5 MB).');
+                        layoutInput.value = '';
+                        fileNameDisplay.textContent = 'Pilih file';
+                        fileSizeDisplay.textContent = '';
+                        return;
+                    }
+
+                    // Update file details
+                    fileNameDisplay.textContent = file.name;
+                    fileSizeDisplay.textContent = `• ${fileSizeMB.toFixed(2)} MB`;
+
+                    // Clear hidden input (indicating a new file is uploaded)
+                    showLayoutInput.value = '';
+
+                    // Update preview with new file
+                    updateImagePreview(file);
+                }
+            });
+
+            // Show preview when "View" button is clicked
+            viewButton.addEventListener('click', function () {
+                const currentLayoutURL = showLayoutInput.value; // Get the existing layout URL from the hidden input
+                const file = layoutInput.files[0]; // Check if a new file is selected
+
+                if (file) {
+                    // Show new file preview
+                    updateImagePreview(file);
+                } else if (currentLayoutURL && currentLayoutURL !== '-') {
+                    // Show server-side image
+                    updateImagePreview(currentLayoutURL);
+                } else {
+                    // No image to display
+                    updateImagePreview(null);
+                }
+            });
+
+            // Reset button functionality
+            resetButton.addEventListener('click', function () {
+                layoutInput.value = '';
+                fileNameDisplay.textContent = 'Pilih file';
+                fileSizeDisplay.textContent = '';
+
+                // Reset to server-side image if it exists
+                const currentLayoutURL = showLayoutInput.value;
+                if (currentLayoutURL && currentLayoutURL !== '-') {
+                    updateImagePreview(currentLayoutURL);
+                } else {
+                    updateImagePreview(null);
+                }
+            });
+
+            // Update preview when modal is opened
+            $('#imagePreviewModal').on('show.bs.modal', function () {
+                const currentLayoutURL = showLayoutInput.value; // Check server-side image URL
+                const file = layoutInput.files[0]; // Check if a new file is selected
+
+                if (file) {
+                    updateImagePreview(file);
+                } else if (currentLayoutURL && currentLayoutURL !== '-') {
+                    updateImagePreview(currentLayoutURL);
+                } else {
+                    updateImagePreview(null);
+                }
+            });
+        });
+
+    </script>
+
+    {{-- ini untuk vidio --}}
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+            const videoInput = document.getElementById('vidio');
+            const videoFileNameDisplay = document.getElementById('videoFileName');
+            const videoFileSizeDisplay = document.getElementById('videoFileSize');
+            const modalVideoPreview = document.getElementById('modalVideoPreview');
+            const noVideoText = document.getElementById('noVideoText');
+            const resetVideoButton = document.getElementById('resetVideoButton');
+            const viewVideoButton = document.getElementById('viewVideoButton');
+            const errorDisplay = document.getElementById('vidio-error');
+            const showVidioInput = document.getElementById('show_vidio'); // Hidden input storing current video URL
+
+            // Update video preview in the modal
+            function updateVideoPreview(file) {
+                if (!file) {
+                    modalVideoPreview.style.display = 'none';
+                    noVideoText.style.display = 'block';
+                    modalVideoPreview.src = ''; // Clear the video source
+                    return;
+                }
+
+                if (typeof file === 'string') {
+                    // If file is a string (URL from backend)
+                    modalVideoPreview.src = file;
+                    modalVideoPreview.style.display = 'block';
+                    noVideoText.style.display = 'none';
+                } else {
+                    // If file is a File object
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        modalVideoPreview.src = e.target.result;
+                        modalVideoPreview.style.display = 'block';
+                        noVideoText.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Handle video input change (when a new file is uploaded)
+            videoInput.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const fileSizeMB = file.size / 1024 / 1024;
+                    if (fileSizeMB > 50) {
+                        errorDisplay.textContent = 'Ukuran file melebihi 50 MB. Silakan pilih file yang lebih kecil.';
+                        videoInput.value = '';
+                        videoFileNameDisplay.textContent = 'Pilih file';
+                        videoFileSizeDisplay.textContent = '';
+                        return;
+                    }
+
+                    errorDisplay.textContent = '';
+                    videoFileNameDisplay.textContent = file.name;
+                    videoFileSizeDisplay.textContent = `• ${fileSizeMB.toFixed(2)} MB`;
+
+                    // Update hidden input to indicate this is a new file
+                    showVidioInput.value = '';
+
+                    // Update preview
+                    updateVideoPreview(file);
+                }
+            });
+
+            // Show video preview in the modal
+            viewVideoButton.addEventListener('click', function () {
+                const cekVidio = showVidioInput.value; // Check if there is an existing video URL
+                let file;
+
+                if (cekVidio && cekVidio !== '-') {
+                    file = cekVidio; // Use existing video URL
+                } else {
+                    file = videoInput.files[0]; // Use the newly uploaded file
+                }
+
+                updateVideoPreview(file);
+            });
+
+            // Reset the input and clear preview
+            resetVideoButton.addEventListener('click', function () {
+                videoInput.value = '';
+                videoFileNameDisplay.textContent = 'Pilih file';
+                videoFileSizeDisplay.textContent = '';
+                modalVideoPreview.src = '';
+                modalVideoPreview.style.display = 'none';
+                noVideoText.style.display = 'block';
+                errorDisplay.textContent = '';
+
+                // Reset hidden input to indicate no video
+                showVidioInput.value = '-';
+            });
+
+            // Update modal preview when it is opened
+            $('#videoPreviewModal').on('show.bs.modal', function () {
+                const cekVidio = showVidioInput.value;
+                let file;
+
+                if (cekVidio && cekVidio !== '-') {
+                    file = cekVidio; // Use existing video URL
+                } else {
+                    file = videoInput.files[0]; // Use the newly uploaded file
+                }
+
+                updateVideoPreview(file);
+            });
+        });
+
+
+
+    </script>
+
+    {{-- untuk add more facility --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('container-multiple');
+            const addMoreBtn = document.getElementById('addMoreBtn');
+
+            function updateDeleteButtons() {
+                const deleteButtons = container.querySelectorAll('.delete-btn');
+                deleteButtons.forEach(button => {
+                    button.disabled = deleteButtons.length <= 1; // Disable if only one input remains
+                });
+            }
+
+            addMoreBtn.addEventListener('click', function() {
+                const formGroup = document.createElement('div');
+                formGroup.classList.add('form-group', 'mt-3');
+                formGroup.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-11">
+                            <input type="text" name="facility[]" class="form-control" placeholder="Enter Facility">
+                            <span class="text-danger error-message"></span>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-danger btn-sm delete-btn" type="button">
+                                <i class="bi bi-trash"></i>&nbsp;&nbsp; Delete
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(formGroup);
+
+                // Update delete buttons after adding a new input
+                updateDeleteButtons();
+            });
+
+            container.addEventListener('click', function(e) {
+                if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
+                    const formGroup = e.target.closest('.form-group');
+                    container.removeChild(formGroup);
+
+                    // Update delete buttons after removal
+                    updateDeleteButtons();
+                }
+            });
+
+            // Initialize delete buttons on page load
+            updateDeleteButtons();
+        });
+    </script>
+
+    {{-- show hide link dan vidio  --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioButtons = document.querySelectorAll('input[name="type_upload"]');
+            const linkSection = document.getElementById('show_if_type_link');
+            const videoSection = document.getElementById('show_if_type_upload_vidio');
+
+            // Helper function to toggle visibility
+            function toggleSections() {
+                const selectedType = document.querySelector('input[name="type_upload"]:checked');
+                if (selectedType) {
+                    if (selectedType.value === 'link') {
+                        linkSection.style.display = 'block';
+                        videoSection.style.display = 'none';
+                    } else if (selectedType.value === 'upload_vidio') {
+                        linkSection.style.display = 'none';
+                        videoSection.style.display = 'block';
+                    }
+                }
+            }
+
+            // Initial toggle on page load
+            toggleSections();
+
+            // Add change event listeners to radio buttons
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', toggleSections);
+            });
+        });
+
+    </script>
+
+
+@endsection
