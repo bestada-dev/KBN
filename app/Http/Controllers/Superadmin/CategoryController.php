@@ -10,11 +10,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 use App\CategoryModel;
+use App\Http\Controllers\BaseController\UploadImageController;
 use App\LogUsersModel;
 use Exception;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
-class CategoryController extends Controller
+class CategoryController extends UploadImageController
 {
     function index(){
         return view('pages.admin.category.index');
@@ -111,7 +112,7 @@ class CategoryController extends Controller
         }
 
         if ($request->hasFile('icon')) {
-            $iconPath = $request->file('icon')->store('public/icons');
+            $iconPath = $request->file('icon')->store($this->uploadIconPath);
         }
 
         $category = CategoryModel::create([
@@ -159,7 +160,7 @@ class CategoryController extends Controller
                 Storage::delete($category->icon);
             }
 
-            $iconPath = $request->file('icon')->store('public/icons');
+            $iconPath = $request->file('icon')->store($this->updateIconPath);
             $category->icon = $iconPath;
         }
 

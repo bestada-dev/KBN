@@ -149,134 +149,7 @@
                         </button>
                     </div>
                 </form>
-                {{-- OLD 
-                <!-- Tab Content -->
-                <!-- Industrial Land -->
-                <div class="tab-content flex flex-wrap items-end w-full gap-6  py-4 px-2 bg-white rounded-b-lg  rounded-r-lg items-center hidden"
-                    data-tab-content="industial-land">
-                    <div class="flex items-center mb-4 md:mb-0  w-5/12">
-                        <i class="fas fa-map-marker-alt text-green-700 mr-2"></i>
-                        <select
-                            class="selectpicker border border-gray-300 rounded-lg p-2 w-full outline-none focus:ring-2 hover:ring-2 focus:ring-green-300 hover:ring-green-300  transition-all duration-300 rounded-md">
-                            <option>Select Zone</option>
-                            <option value="1">Zona 1</option>
-                            <option value="2">Zona 2</option>
-                            <option value="3">Zona 3</option>
-                            <option value="4">Zona 4</option>
-                        </select>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0 gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Land area</label>
-                        <div style="display: flex; gap: 1rem;">
-                            <div id="land-area-range-warehouse" class="range-slider" style="min-width:100px"></div>
-                            <span class="text-xs text-green-700" id="land-area-range-value">0 m² - 3200 m²</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0 gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Status</label>
-                        <div class="flex items-center">
-                            <input class="mr-1" id="bonded" name="status" type="radio" value="bonded">
-                            <label class="mr-4 text-xs text-green-700" for="bonded">Bonded</label>
-                            <input class="mr-1" id="general" name="status" type="radio" value="general">
-                            <label for="general" class="text-xs text-green-700">General</label>
-                        </div>
-                    </div>
-
-
-                    <button
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-800 focus:bg-green-800 outline-none focus:ring-2 hover:ring-2 focus:ring-green-300 hover:ring-green-300  p-3 transition-all duration-300">
-                        <i class="fas fa-search mr-2"></i>
-                        Search
-                    </button>
-                </div>
-
-                <!-- Tab Content -->
-                <!-- Warehouse -->
-                <div class="tab-content flex flex-wrap items-end w-full gap-6  py-4 px-2 bg-white rounded-b-lg  rounded-r-lg items-center hidden"
-                    data-tab-content="warehouse">
-                    <div class="flex items-center mb-4 md:mb-0 w-1/4">
-                        <i class="fas fa-map-marker-alt text-green-700 mr-2"></i>
-                        <select
-                            class="selectpicker border border-gray-300 rounded-lg p-2 w-full outline-none focus:ring-2 hover:ring-2 focus:ring-green-300 hover:ring-green-300  transition-all duration-300 rounded-md">
-                            <option>Select Zone</option>
-                            <option value="1">Zona 1</option>
-                            <option value="2">Zona 2</option>
-                            <option value="3">Zona 3</option>
-                            <option value="4">Zona 4</option>
-                        </select>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0 gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Land area</label>
-                        <div style="display: flex; gap: 1rem;">
-                            <div id="land-area-range-factory" class="range-slider" style="min-width:100px"></div>
-                            <span class="text-xs text-green-700" id="land-area-range-value">0 m² - 3200 m²</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0  gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Building area</label>
-                        <div style="display: flex; gap: 1rem;">
-                            <div id="building-area-range-factory" class="range-slider" style="min-width:100px"></div>
-                            <span class="text-xs text-green-700" id="building-area-range-value">0 m² - 3200 m²</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0 gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Status</label>
-                        <div class="flex items-center">
-                            <input class="mr-1" id="bonded" name="status" type="radio" value="bonded">
-                            <label class="mr-4 text-xs text-green-700" for="bonded">Bonded</label>
-                            <input class="mr-1" id="general" name="status" type="radio" value="general">
-                            <label for="general" class="text-xs text-green-700">General</label>
-                        </div>
-                    </div>
-
-
-                    <button
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-800 focus:bg-green-800 outline-none focus:ring-2 hover:ring-2 focus:ring-green-300 hover:ring-green-300  p-3 transition-all duration-300">
-                        <i class="fas fa-search mr-2"></i>
-                        Search
-                    </button>
-                </div>
-
-                <!-- Tab Content -->
-                <!-- Container Yard -->
-                <div class="tab-content flex flex-wrap items-end w-full gap-6  py-4 px-2 bg-white rounded-b-lg  rounded-r-lg items-center hidden"
-                    data-tab-content="container-yard">
-                    <div class="flex items-center mb-4 md:mb-0 w-5/12">
-                        <i class="fas fa-map-marker-alt text-green-700 mr-2"></i>
-                        <select
-                            class="selectpicker border border-gray-300 rounded-lg p-2 w-full outline-none focus:ring-2 hover:ring-2 focus:ring-green-300 hover:ring-green-300  transition-all duration-300 rounded-md">
-                            <option>Select Zone</option>
-                            <option value="1">Zona 1</option>
-                            <option value="2">Zona 2</option>
-                            <option value="3">Zona 3</option>
-                            <option value="4">Zona 4</option>
-                        </select>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0 gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Land area</label>
-                        <div style="display: flex; gap: 1rem;">
-                            <div id="land-area-range-warehouse" class="range-slider" style="min-width:100px"></div>
-                            <span class="text-xs text-green-700" id="land-area-range-value">0 m² - 3200 m²</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col mb-4 md:mb-0 gap-2 items-start">
-                        <label class="font-bold text-sm text-green-700" for="land-area">Status</label>
-                        <div class="flex items-center">
-                            <input class="mr-1" id="bonded" name="status" type="radio" value="bonded">
-                            <label class="mr-4 text-xs text-green-700" for="bonded">Bonded</label>
-                            <input class="mr-1" id="general" name="status" type="radio" value="general">
-                            <label for="general" class="text-xs text-green-700">General</label>
-                        </div>
-                    </div>
-
-
-                    <button
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-800 focus:bg-green-800 outline-none focus:ring-2 hover:ring-2 focus:ring-green-300 hover:ring-green-300  p-3 transition-all duration-300">
-                        <i class="fas fa-search mr-2"></i>
-                        Search
-                    </button>
-                </div>
-                 --}}
+              
             </div>
         </div>
     </div>
@@ -305,7 +178,7 @@
                                             @endphp
                                             <img alt="View of skyscrapers from below with an airplane in the sky"
                                                 class="w-full h-48 object-cover" height="400"
-                                                src="/uploads/{{ $attachment->detail_photo }}"
+                                                src="/detail_photos/{{ $attachment->detail_photo }}"
                                                 onerror="this.onerror=null; this.src='{{ asset('assets/no-images.jpg') }}';"
                                                 width="600" />
                                             <div class="p-4 flex justify-between">
@@ -326,117 +199,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- OLD
-                                                    <div class="splide-gallery-wrap mt-8">
-                                                        <div id="splide-gallery" class="splide" aria-label="Beautiful Images">
-                                                            <div class="splide__track">
-                                                                <ul class="splide__list">
-                                                                    <li class="splide__slide relative">
-                                                                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                                                            <img alt="View of skyscrapers from below with an airplane in the sky"
-                                                                                class="w-full h-48 object-cover" height="400"
-                                                                                src="https://storage.googleapis.com/a1aa/image/hHuyL8WgPCYxEptrHY6JE0CFa9z6tDHy35P4tXK5yx3bhAeJA.jpg"
-                                                                                width="600" />
-                                                                            <div class="p-4 flex justify-between">
-                                                                                <p class="text-gray-700">
-                                                                                    19930
-                                                                                </p>
-                                                                                <p class="text-green-600">
-                                                                                    <i class="fas fa-map-marker-alt text-green-700 mr-2"></i> Hills, CA 90210
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="splide__slide relative">
-                                                                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                                                            <img alt="View of a residential building with multiple floors and balconies"
-                                                                                class="w-full h-48 object-cover" height="400"
-                                                                                src="https://storage.googleapis.com/a1aa/image/qsb1FeZjCq0TGC5nNvAB40ZQyonFlGBdw8KWjCFBpDP3CB8JA.jpg"
-                                                                                width="600" />
-                                                                            <div class="p-4 flex justify-between">
-                                                                                <p class="text-gray-700">
-                                                                                    19930
-                                                                                </p>
-                                                                                <p class="text-green-600">
-                                                                                    <i class="fas fa-map-marker-alt text-green-700 mr-2"></i> Hills, CA 90210
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="splide__slide relative">
-                                                                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                                                            <img alt="View of skyscrapers from below with an airplane in the sky"
-                                                                                class="w-full h-48 object-cover" height="400"
-                                                                                src="https://images.unsplash.com/photo-1682685797769-481b48222adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                                                                width="600" />
-                                                                            <div class="p-4 flex justify-between">
-                                                                                <p class="text-gray-700">
-                                                                                    19930
-                                                                                </p>
-                                                                                <p class="text-green-600">
-                                                                                    <i class="fas fa-map-marker-alt text-green-700 mr-2"></i> Hills, CA 90210
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="splide__slide relative">
-                                                                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                                                            <img alt="View of skyscrapers from below with an airplane in the sky"
-                                                                                class="w-full h-48 object-cover" height="400"
-                                                                                src="https://storage.googleapis.com/a1aa/image/hHuyL8WgPCYxEptrHY6JE0CFa9z6tDHy35P4tXK5yx3bhAeJA.jpg"
-                                                                                width="600" />
-                                                                            <div class="p-4 flex justify-between">
-                                                                                <p class="text-gray-700">
-                                                                                    19930
-                                                                                </p>
-                                                                                <p class="text-green-600">
-                                                                                    <i class="fas fa-map-marker-alt text-green-700 mr-2"></i> Hills, CA 90210
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="splide__slide relative">
-                                                                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                                                            <img alt="View of a residential building with multiple floors and balconies"
-                                                                                class="w-full h-48 object-cover" height="400"
-                                                                                src="https://storage.googleapis.com/a1aa/image/qsb1FeZjCq0TGC5nNvAB40ZQyonFlGBdw8KWjCFBpDP3CB8JA.jpg"
-                                                                                width="600" />
-                                                                            <div class="p-4 flex justify-between">
-                                                                                <p class="text-gray-700">
-                                                                                    19930
-                                                                                </p>
-                                                                                <p class="text-green-600">
-                                                                                    <i class="fas fa-map-marker-alt text-green-700 mr-2"></i> Hills, CA 90210
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="splide__slide relative">
-                                                                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                                                                            <img alt="View of skyscrapers from below with an airplane in the sky"
-                                                                                class="w-full h-48 object-cover" height="400"
-                                                                                src="https://storage.googleapis.com/a1aa/image/hHuyL8WgPCYxEptrHY6JE0CFa9z6tDHy35P4tXK5yx3bhAeJA.jpg"
-                                                                                width="600" />
-                                                                            <div class="p-4 flex justify-between">
-                                                                                <p class="text-gray-700">
-                                                                                    19930
-                                                                                </p>
-                                                                                <p class="text-green-600">
-                                                                                    <i class="fas fa-map-marker-alt text-green-700 mr-2"></i> Hills, CA 90210
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
+               
             </div>
         </section>
 
         <!-- Property with VR Section -->
         <section class="h-[520px] relative flex items-center" data-section="landing-page">
-            <div class="bg-green-100 absolute top-0 left-0 h-full w-[85%] z-[-1]"></div>
+            <div class="bg-green-100 absolute top-0 left-0 h-full w-[100%] z-[-1]"></div>
             <div class="container mx-auto  px-6 py-8 w-11/12 flex items-center">
                 <div class=" w-1/3">
                     <h2 class="text-3xl font-bolder vollkorn-500 text-green-900">
@@ -457,17 +226,23 @@
                         id="btn-prev-slide">
                         <i class="fas fa-arrow-left text-green-600 "></i>
                     </button>
-                    <div class="card-carousel -mr-[20rem]">
+                    <div class="card-carousel -mr-[20px] flex space-x-4">
                         @foreach ($product_property as $index => $item)
                             <div class="my-card {{ $loop->first ? 'active' : 'next' }}">
                                 {{-- <p>
                                     {{ json_encode($item) }}
                                 </p> --}}
                                 <div class="relative w-60 bg-white overflow-hidden shadow-lg">
+                                    @php
+                                        $path = public_path('layouts/' . $item->layout);
+                                        $src = file_exists($path)
+                                            ? asset('layouts/' . $item->layout)
+                                            : 'https://storage.googleapis.com/a1aa/image/x4PHqzKseU0jdyXrUnJAccUfkR86t1ke8gNfEU2nxAfxQQAfE.jpg';
+                                    @endphp
                                     <img alt="{{ $item->block }}"
                                         class="w-full h-[450px] object-cover"
-                                        src="https://storage.googleapis.com/a1aa/image/x4PHqzKseU0jdyXrUnJAccUfkR86t1ke8gNfEU2nxAfxQQAfE.jpg"
-                                        {{-- src="{{ file_exists(public_path('storage/' . $item['layout'])) ? Storage::url($item['layout']) : asset($item['layout']) }}" --}}
+                                        {{-- src="https://storage.googleapis.com/a1aa/image/x4PHqzKseU0jdyXrUnJAccUfkR86t1ke8gNfEU2nxAfxQQAfE.jpg" --}}
+                                        src="{{ $src }}"
                                         >
                                         <div
                                             class="absolute top-4 left-4 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center">
@@ -509,7 +284,8 @@
             <div class="mx-auto w-11/12">
                 <div class="flex flex-col md:flex-row items-start gap-10">
                     <div class="w-full md:w-1/2  ring-2 ring-green-300" id="left-our-facilities">
-                        <img src="{{ $benefit_title->image ?? '' }}" class="h-full w-full object-cover">
+                        {{-- <img src="{{ $benefit_title->image ?? '/detail_photos/Lahan Sewa.JPG' }}" class="h-full w-full object-cover"> --}}
+                        <img src="{{ '/detail_photos/Lahan Sewa.JPG' }}" class="h-full w-full object-cover">
                     </div>
                     <div class="w-full md:w-1/2" id="right-our-facilities">
                         <!-- <h2 class="text-green-600 text-sm font-semibold">OUR FACILITIES</h2> -->
@@ -533,67 +309,6 @@
             </div>
         </section>
 
-        {{-- OLD 
-    <!-- Our Facilities Section -->
-    <section class="pt-20  bg-white test"
-        style="border-top-left-radius: 80px;border-top-right-radius: 80px;margin-top: 0;z-index: 999;position: relative;">
-        <div class="mx-auto w-11/12">
-            <div class="flex flex-col md:flex-row items-start gap-10">
-                <div class="w-full md:w-1/2  ring-2 ring-green-300" id="left-our-facilities">
-                    <img src="https://storage.googleapis.com/a1aa/image/qsb1FeZjCq0TGC5nNvAB40ZQyonFlGBdw8KWjCFBpDP3CB8JA.jpg"
-                        class="h-full w-full object-cover">
-                    <!-- <div class="relative test">
-                                                                                                                  <video class="w-full h-auto" controls="">
-                                                                                                                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                                                                                                                        <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
-                                                                                                                    Your browser does not support the video tag.
-                                                                                                                  </video>
-                                                                                                                  <div class="absolute inset-0 flex items-center justify-center">
-                                                                                                                    <button class="bg-green-600 text-white rounded-full p-4">
-                                                                                                                      <i class="fas fa-play text-2xl"></i>
-                                                                                                                    </button>
-                                                                                                                  </div>
-                                                                                                                </div> -->
-                </div>
-                <div class="w-full md:w-1/2" id="right-our-facilities">
-                    <!-- <h2 class="text-green-600 text-sm font-semibold">OUR FACILITIES</h2> -->
-                    <h1 class="text-3xl font-bold text-gray-800 mt-2 vollkorn-700">1965 S Crescent Warehouse</h1>
-                    <p class="text-green-800 mt-6 text-sm">
-                        Agent hen an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                        has survived not only five centuries, but also the leap into electronic.
-                    </p>
-                    <div class="mt-6 grid grid-cols-2 gap-2">
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-600 mr-2"></i>
-                            <span class="text-lg">Parking Space</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-600 mr-2"></i>
-                            <span class="text-lg">Parking Space</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-600 mr-2"></i>
-                            <span class="text-lg">Parking Space</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-600 mr-2"></i>
-                            <span class="text-lg">Parking Space</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-600 mr-2"></i>
-                            <span class="text-lg">Parking Space</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-600 mr-2"></i>
-                            <span class="text-lg">Parking Space</span>
-                        </div>
-                    </div>
-                    <button class="mt-6 bg-green-600 text-white py-2 px-8 hover:bg-green-700 font-bold">Detail</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    --}}
 
         <!-- Our Popular Properties Section -->
         <section class="pt-16 pb-3 bg-white"
@@ -617,11 +332,14 @@
                                             <div class="relative">
                                                 <img alt="Aerial view of a large warehouse with trucks and greenery around"
                                                     class="w-full h-48 object-cover" height="200"
-                                                    src="https://storage.googleapis.com/a1aa/image/x4PHqzKseU0jdyXrUnJAccUfkR86t1ke8gNfEU2nxAfxQQAfE.jpg"
-                                                    {{-- src="{{ file_exists(public_path('storage/' . $item['layout'])) ? Storage::url($item['layout']) : asset($item['layout']) }}" --}}
+                                                    @php
+                                                        $path = public_path('layouts/' . $item->layout);
+                                                        $src = file_exists($path)
+                                                            ? asset('layouts/' . $item->layout)
+                                                            : 'https://storage.googleapis.com/a1aa/image/x4PHqzKseU0jdyXrUnJAccUfkR86t1ke8gNfEU2nxAfxQQAfE.jpg';
+                                                    @endphp
+                                                    src="{{ $src }}"
                                                     width="400" />
-                                                    {{-- <span>{{ json_encode($item["layout"]) }}</span> --}}
-                                                    {{-- <span>{{ file_exists(public_path('storage/' . $item['layout'])) ? Storage::url($item['layout']) : asset($item['layout']) }}</span> --}}
                                                 <span
                                                     class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
                                                     {{ $item->type }}
@@ -661,231 +379,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- OLD
-                                                     <div class="splide-our-popular-properties-wrap mt-8 h-[390px]">
-                                                    <div id="splide-our-popular-properties" class="splide" aria-label="Beautiful Images">
-                                                        <div class="splide__track">
-                                                            <ul class="splide__list">
-                                                                <li class="splide__slide relative">
-                                        <div class="bg-white shadow-lg  overflow-hidden max-w-sm border">
-                                        <div class="relative">
-                                        <img alt="Aerial view of a large warehouse with trucks and greenery around" class="w-full h-48 object-cover" height="200" src="https://storage.googleapis.com/a1aa/image/x4PHqzKseU0jdyXrUnJAccUfkR86t1ke8gNfEU2nxAfxQQAfE.jpg" width="400"/>
-                                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                                         Cooling warehouse
-                                        </span>
-                                        </div>
-                                        <div class="p-4">
-                                        <h2 class="text-xl font-semibold">
-                                         1963 S Crescent Warehouse
-                                        </h2>
-                                        <p class="text-gray-600">
-                                         <i class="fas fa-map-marker-alt text-green-500">
-                                         </i>
-                                         Hills, CA 90210
-                                        </p>
-                                        <div class="flex justify-between items-center mt-4 text-gray-600">
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                                                </li>
-                                                                <li class="splide__slide relative">
-                                                                     <div class="bg-white shadow-lg  overflow-hidden max-w-sm border">
-                                        <div class="relative">
-                                        <img alt="Aerial view of a large warehouse with trucks and greenery around" class="w-full h-48 object-cover" height="200" src="https://storage.googleapis.com/a1aa/image/hHuyL8WgPCYxEptrHY6JE0CFa9z6tDHy35P4tXK5yx3bhAeJA.jpg" width="400"/>
-                                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                                         Cooling warehouse
-                                        </span>
-                                        </div>
-                                        <div class="p-4">
-                                        <h2 class="text-xl font-semibold">
-                                         1963 S Crescent Warehouse
-                                        </h2>
-                                        <p class="text-gray-600">
-                                         <i class="fas fa-map-marker-alt text-green-500">
-                                         </i>
-                                         Hills, CA 90210
-                                        </p>
-                                        <div class="flex justify-between items-center mt-4 text-gray-600">
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                                                </li>
-                                                                <li class="splide__slide relative">
-                                                                   <div class="bg-white shadow-lg  overflow-hidden max-w-sm border">
-                                        <div class="relative">
-                                        <img alt="Aerial view of a large warehouse with trucks and greenery around" class="w-full h-48 object-cover" height="200" src="https://images.unsplash.com/photo-1682685797769-481b48222adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" width="400"/>
-                                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                                         Cooling warehouse
-                                        </span>
-                                        </div>
-                                        <div class="p-4">
-                                        <h2 class="text-xl font-semibold">
-                                         1963 S Crescent Warehouse
-                                        </h2>
-                                        <p class="text-gray-600">
-                                         <i class="fas fa-map-marker-alt text-green-500">
-                                         </i>
-                                         Hills, CA 90210
-                                        </p>
-                                        <div class="flex justify-between items-center mt-4 text-gray-600">
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                                                </li>
-                                                                <li class="splide__slide relative">
-                                                                    <div class="bg-white shadow-lg  overflow-hidden max-w-sm border">
-                                        <div class="relative">
-                                        <img alt="Aerial view of a large warehouse with trucks and greenery around" class="w-full h-48 object-cover" height="200" src="https://storage.googleapis.com/a1aa/image/EMx6eeR7G2r7pkYHrl1LDVaOXqSquoQeciXy8wpM1scExDwnA.jpg" width="400"/>
-                                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                                         Cooling warehouse
-                                        </span>
-                                        </div>
-                                        <div class="p-4">
-                                        <h2 class="text-xl font-semibold">
-                                         1963 S Crescent Warehouse
-                                        </h2>
-                                        <p class="text-gray-600">
-                                         <i class="fas fa-map-marker-alt text-green-500">
-                                         </i>
-                                         Hills, CA 90210
-                                        </p>
-                                        <div class="flex justify-between items-center mt-4 text-gray-600">
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                                                </li>
-                                                                <li class="splide__slide relative">
-                                                                     <div class="bg-white shadow-lg  overflow-hidden max-w-sm border">
-                                        <div class="relative">
-                                        <img alt="Aerial view of a large warehouse with trucks and greenery around" class="w-full h-48 object-cover" height="200" src="https://storage.googleapis.com/a1aa/image/EMx6eeR7G2r7pkYHrl1LDVaOXqSquoQeciXy8wpM1scExDwnA.jpg" width="400"/>
-                                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                                         Cooling warehouse
-                                        </span>
-                                        </div>
-                                        <div class="p-4">
-                                        <h2 class="text-xl font-semibold">
-                                         1963 S Crescent Warehouse
-                                        </h2>
-                                        <p class="text-gray-600">
-                                         <i class="fas fa-map-marker-alt text-green-500">
-                                         </i>
-                                         Hills, CA 90210
-                                        </p>
-                                        <div class="flex justify-between items-center mt-4 text-gray-600">
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                                                </li>
-                                                                <li class="splide__slide relative">
-                                                                     <div class="bg-white shadow-lg  overflow-hidden max-w-sm border">
-                                        <div class="relative">
-                                        <img alt="Aerial view of a large warehouse with trucks and greenery around" class="w-full h-48 object-cover" height="200" src="https://storage.googleapis.com/a1aa/image/EMx6eeR7G2r7pkYHrl1LDVaOXqSquoQeciXy8wpM1scExDwnA.jpg" width="400"/>
-                                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                                         Cooling warehouse
-                                        </span>
-                                        </div>
-                                        <div class="p-4">
-                                        <h2 class="text-xl font-semibold">
-                                         1963 S Crescent Warehouse
-                                        </h2>
-                                        <p class="text-gray-600">
-                                         <i class="fas fa-map-marker-alt text-green-500">
-                                         </i>
-                                         Hills, CA 90210
-                                        </p>
-                                        <div class="flex justify-between items-center mt-4 text-gray-600">
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                         <div class="flex items-center">
-                                          <i class="fas fa-ruler-combined text-green-500">
-                                          </i>
-                                          <span class="ml-2">
-                                           3200 m²
-                                          </span>
-                                         </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+               
             </div>
         </section>
 
@@ -924,51 +418,6 @@
                             </div>
                         @endforeach
 
-                        <!-- OLD -->
-                        <!-- <div class="bg-white py-8 p-4 rounded shadow flex flex-col items-center rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-                                            <div class="text-center flex flex-col items-center">
-                                                <div style="width: 70px;height: 70px;background: #22c55e;border-radius: 100%;display: flex;justify-content: center;align-items: center;"> <img src="{{ asset('assets/for-landing-page/chat.png') }}" width="35"></div>
-                                                <h3 class="mt-2 font-bold text-green-600">
-                                                    Office Motion
-                                                </h3>
-                                            </div>
-                                                <p class="mt-2 text-sm text-center">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                </p>
-                                                </div>
-                                                <div class="bg-white py-8 p-4 rounded shadow flex flex-col items-center rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-                                            <div class="text-center flex flex-col items-center">
-                                                <div style="width: 70px;height: 70px;background: #22c55e;border-radius: 100%;display: flex;justify-content: center;align-items: center;"> <img src="{{ asset('assets/for-landing-page/lock.png') }}" width="35"></div>
-                                                <h3 class="mt-2 font-bold text-green-600">
-                                                    Office Motion
-                                                </h3>
-                                            </div>
-                                                <p class="mt-2 text-sm text-center">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                </p>
-                                                </div>
-                                                <div class="bg-white py-8 p-4 rounded shadow flex flex-col items-center rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-                                            <div class="text-center flex flex-col items-center">
-                                                <div style="width: 70px;height: 70px;background: #22c55e;border-radius: 100%;display: flex;justify-content: center;align-items: center;"> <img src="{{ asset('assets/for-landing-page/pellan.png') }}" width="35"></div>
-                                                <h3 class="mt-2 font-bold text-green-600">
-                                                    Office Motion
-                                                </h3>
-                                            </div>
-                                                <p class="mt-2 text-sm text-center">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                </p>
-                                                </div>
-                                                <div class="bg-white py-8 p-4 rounded shadow flex flex-col items-center rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-                                            <div class="text-center flex flex-col items-center">
-                                                <div style="width: 70px;height: 70px;background: #22c55e;border-radius: 100%;display: flex;justify-content: center;align-items: center;"> <img src="{{ asset('assets/for-landing-page/bulet.png') }}" width="35"></div>
-                                                <h3 class="mt-2 font-bold text-green-600">
-                                                    Office Motion
-                                                </h3>
-                                            </div>
-                                                <p class="mt-2 text-sm text-center">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                </p>
-                                                </div> -->
                     </div>
                 </div>
             </div>
@@ -1060,87 +509,7 @@
                 console.log("Error", error);
             }
 
-            // OLD
-            // function creatHiddenInput(name) {
-            //     const inputElement = document.createElement("input");
-            //     inputElement.type = "hidden";
-            //     inputElement.name = name;
-            //     return inputElement;
-            // }
-            // const formSearch = $('[data-filter=search]');
-
-            // // for initial render
-            // const typeInputElement = creatHiddenInput("category");
-            // $('.tab-content').each(function() {
-            //     if (!$(this).hasClass("hidden")) {
-            //         typeInputElement.value = $(this).attr('data-tab-content');
-            //     }
-            // });
-            // formSearch.append(typeInputElement);
-
-            // const contentSection = $('[data-tab-content]');
-            // $('[data-tab]').each(function() {
-            //     $(this).on('focus', function() {
-            //         const sectionName = $(this).attr('data-tab');
-            //         $('[data-tab-content]').each(function() {
-            //             if ($(this).attr('data-tab-content') == sectionName) {
-            //                 $(this).removeClass('hidden');
-            //                 typeInputElement.value = sectionName;
-            //             } else {
-            //                 $(this).addClass('hidden');
-            //             }
-            //         })
-            //     })
-            // })
-
-            /** Input Slider */
-            // $(".range-slider").each(function() {
-            //     var slider = $(this);
-            //     var valueDisplayId = "#" + slider.attr('id') +
-            //         "-value"; // Dynamically generate the corresponding value display ID
-            //     slider.slider({
-            //         range: true,
-            //         min: 0,
-            //         max: 3200,
-            //         values: [0, 3200],
-            //         slide: function(event, ui) {
-            //             const inputName = slider.attr("data-name-input");
-            //             let alreadyElement = $(formSearch).find(`[name=${inputName}]`);
-            //             if (alreadyElement.length < 1) {
-            //                 alreadyElement = creatHiddenInput(inputName);
-            //                 alreadyElement.setAttribute('value',
-            //                     `${ui.values[0]}-${ui.values[1]}`)
-            //                 formSearch.append(alreadyElement);
-            //             } else {
-            //                 $(alreadyElement[0]).attr('value',
-            //                     `${ui.values[0]}-${ui.values[1]}`)
-            //             }
-            //             // Update the corresponding value display based on the slider ID
-            //             $(valueDisplayId).text(ui.values[0] + " m²  - " + ui.values[1] +
-            //                 " m²");
-            //         }
-            //     });
-            // });
-
-            // Initialize all sliders with the common class .range-slider
-            // $(".range-slider").each(function() {
-            //     var slider = $(this);
-            //     var valueDisplayId = "#" + slider.attr('id') +
-            //     "-value"; // Dynamically generate the corresponding value display ID
-
-            //     slider.slider({
-            //         range: true,
-            //         min: 0,
-            //         max: 3200,
-            //         values: [0, 3200],
-            //         slide: function(event, ui) {
-            //             // Update the corresponding value display based on the slider ID
-            //             $(valueDisplayId).text(ui.values[0] + " m²  - " + ui.values[1] + " m²");
-            //         }
-            //     });
-            // });
-
-            // $('[data-section=landing-page]').hide();
+        
         });
     </script>
 
@@ -1248,13 +617,6 @@
             const updateCardss = () => {
                 cards.forEach((card, index) => {
                     card.classList.remove('active', 'prev', 'next');
-                    // if (index === activeIndex) {
-                    //   card.classList.add('active');
-                    // } else if (index === activeIndex - 1 || (activeIndex === 0 && index === cards.length - 1)) {
-                    //   card.classList.add('prev');
-                    // } else if (index === activeIndex + 1 || (activeIndex === cards.length - 1 && index === 0)) {
-                    //   card.classList.add('next');
-                    // }
 
                     console.log(activeIndex, (cards.length - 1));
                     if (index === activeIndex) {
@@ -1310,62 +672,7 @@
             // updateCardss(); // Initial update to set classes
         });
 
-        //     document.addEventListener('DOMContentLoaded', function () {
-        //   const cards = document.querySelectorAll('.my-card');
-        //   const nextButton = document.getElementById('btn-next-slide');
-        //   const prevButton = document.getElementById('btn-prev-slide');
-
-        //   let activeIndex = 0;
-
-        //   const updateCards = () => {
-        //     cards.forEach((card, index) => {
-        //       card.classList.remove('active', 'prev', 'next');
-        //       if (index === activeIndex) {
-        //         card.classList.add('active');
-        //       } else if (index === activeIndex - 1 || (activeIndex === 0 && index === cards.length - 1)) {
-        //         card.classList.add('prev');
-        //       } else if (index === activeIndex + 1 || (activeIndex === cards.length - 1 && index === 0)) {
-        //         card.classList.add('next');
-        //       }
-        //     });
-        //   };
-
-        //   nextButton.addEventListener('click', () => {
-        //     activeIndex = (activeIndex + 1) % cards.length;
-        //     updateCards();
-        //   });
-
-        //   prevButton.addEventListener('click', () => {
-        //     activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-        //     updateCards();
-        //   });
-
-        //   // updateCards(); // Initial update to set classes
-        // });
-
-
-        // $('.my-card').click(function () {
-        //   $slide = $('.active').width();
-        //   console.log($('.active').position().left);
-
-        //   if ($(this).hasClass('next')) {
-        //     $('.card-carousel').stop(false, true).animate({
-        //       left: '-=' + $slide
-        //     });
-        //   } else if ($(this).hasClass('prev')) {
-        //     $('.card-carousel').stop(false, true).animate({
-        //       left: '+=' + $slide
-        //     });
-        //   }
-
-        //   $(this).removeClass('prev next');
-        //   $(this).siblings().removeClass('prev active next');
-
-        //   $(this).addClass('active');
-        //   $(this).prev().addClass('prev');
-        //   $(this).next().addClass('next');
-        //   $(this).next().next().addClass('next');
-        // });
+       
     </script>
     <script>
         $(document).ready(function() {

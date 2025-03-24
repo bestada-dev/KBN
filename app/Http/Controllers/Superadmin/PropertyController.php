@@ -15,10 +15,11 @@ use App\PropertyModel;
 use App\PropertyAttachModel;
 use App\PropertyFacilityModel;
 use App\CategoryModel;
+use App\Http\Controllers\BaseController\UploadImageController;
 use App\ZoningModel;
 use Exception;
 
-class PropertyController extends Controller
+class PropertyController extends UploadImageController
 {
     function index(){
         return view('pages.admin.property.index', [
@@ -197,12 +198,12 @@ class PropertyController extends Controller
                 'url' => $request->url,
                 // 'vidio' => $request->hasFile('vidio') ? $request->file('vidio')->store('videos') : null,
                 'vidio' => $request->hasFile('vidio')
-                            ? $this->saveToPublic($request->file('vidio'), 'videos')
+                            ? $this->saveToPublic($request->file('vidio'), $this->uploadVideoPath)
                             : null,
                 'desc' => $request->desc,
                 // 'layout' => $request->hasFile('layout') ? $request->file('layout')->store('layouts') : null,
                 'layout' => $request->hasFile('layout')
-                            ? $this->saveToPublic($request->file('layout'), 'layouts')
+                            ? $this->saveToPublic($request->file('layout'), $this->uploadLayoutsPath)
                             : null,
                 'status' => 'Available', // Default value
                 'total_viewer' => 0
@@ -311,20 +312,20 @@ class PropertyController extends Controller
             if ($request->hasFile('vidio')) {
                 // Apakah video lama ada?
                 if ($property->vidio) {
-                    Storage::delete('public/videos/' . $property->vidio);
+                    Storage::delete($this->updateVideoPath . $property->vidio);
                 }
                 // Simpan video baru
-                $newVidio = $this->saveToPublic($request->file('vidio'), 'videos');
+                $newVidio = $this->saveToPublic($request->file('vidio'), $this->uploadVideoPath);
                 $property->update(['vidio' => $newVidio]);
             }
 
             if ($request->hasFile('layout')) {
                 // Apakah video lama ada?
                 if ($property->layout) {
-                    Storage::delete('public/layouts/' . $property->layout);
+                    Storage::delete($this->updateLayoutsPath . $property->layout);
                 }
                 // Simpan video baru
-                $newlayout = $this->saveToPublic($request->file('layout'), 'layouts');
+                $newlayout = $this->saveToPublic($request->file('layout'), $this->uploadLayoutsPath);
                 $property->update(['layout' => $newlayout]);
             }
 
@@ -354,7 +355,7 @@ class PropertyController extends Controller
             // Update detail foto
             if ($request->hasFile('detail_photo')) {
                 foreach ($request->file('detail_photo') as $photo) {
-                    $fileName = $this->saveToPublic($photo, 'detail_photos');
+                    $fileName = $this->saveToPublic($photo, $this->uploadDetailPhotoPath);
                     PropertyAttachModel::create([
                         'property_id' => $property->id,
                         'detail_photo' => $fileName,
@@ -431,7 +432,7 @@ class PropertyController extends Controller
         ]);
 
         if ($detailFoto) {
-            $filePath = public_path('detail_photos/' . $detailFoto->detail_photo);
+            $filePath = public_path($this->updateDetailPhotoPath . $detailFoto->detail_photo);
 
             if (file_exists($filePath)) {
                 unlink($filePath);
