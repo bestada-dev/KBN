@@ -25,7 +25,7 @@ services:
         ports:
             - "3311:3306" # Adjust to the desired port for MySQL
         environment:
-            MYSQL_DATABASE: kbn.bestada.co.id
+            MYSQL_DATABASE: kbn_bestada_co_id
             MYSQL_ROOT_PASSWORD: asdfgh
         volumes:
             - ./local-db-data:/var/lib/mysql

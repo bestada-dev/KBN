@@ -5,5 +5,5 @@ FROM mysql:latest
 EXPOSE 3306
 
 # Set environment variables for database configuration
-ENV MYSQL_DATABASE kbn.bestada.co.id
+ENV MYSQL_DATABASE kbn_bestada_co_id
 ENV MYSQL_ROOT_PASSWORD asdfgh
