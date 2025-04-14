@@ -10,6 +10,7 @@ use Auth;
 use App\Child;
 
 use App\Services\IncidentService;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {
+        if (env('APP_ENV') !== 'local') {
+            URL::forceScheme('https');
+        }
         // Attach a view composer to the _header.blade.php view
         View::composer('layouts.partials._search', function ($view) use ($request) {
             $headerController = new Controller();

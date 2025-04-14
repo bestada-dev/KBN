@@ -96,6 +96,15 @@
                 <span>Landing Page</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ url('superadmin/panduan') }}"
+                class="nav-link d-flex align-items-center {{ Request::is('superadmin/panduan*') ? 'text-white active' : '' }}"
+                aria-current="page">
+                <img src="{{ asset('assets/rtype.png') }}" style="width: 20px; height: 20px; margin-right: 10px;" />
+                <!-- Adjust size and spacing -->
+                <span>Panduan Website</span>
+            </a>
+        </li>
     </ul>
     <div class="user-info">
         {{-- <b>

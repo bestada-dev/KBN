@@ -40,6 +40,9 @@ Route::middleware([LoginCheck::class])->group(function(){
             return view('pages.admin.halaman-arah.index');
         })->name('halaman-arah');
 
+        Route::prefix('panduan')->group(function () {
+            Route::GET('/', 'Superadmin\PanduanController@index')->name('pages.admin.panduan.index');
+        });
         Route::prefix('admin')->group(function () {
             Route::GET('/', 'Superadmin\AdminController@index')->name('pages.admin.form.index');
             Route::GET('/post', 'Superadmin\AdminController@post')->name('pages.admin.setup.form.post');

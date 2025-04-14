@@ -71,11 +71,11 @@
                     <div style="margin-top: 5px;">
                         <label>
                             <input type="radio" class="radio" name="type" value="Bounded">
-                            Bounded
+                            Bonded
                         </label>
                         <label style="margin-left: 20px;">
                             <input type="radio" class="radio" name="type" value="General">
-                            General
+                            Non Bonded
                         </label>
                     </div>
                     <span class="text-danger error-message" id="type-error"></span>

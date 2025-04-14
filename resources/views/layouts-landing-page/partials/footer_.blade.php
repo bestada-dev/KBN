@@ -8,7 +8,14 @@
             <div class="slider mt-7">
                 <div class="slider-items">
                   @foreach($childBagian6 as $i)
-                  <img src="{{ file_exists(public_path('storage/'.$i['image'])) ? Storage::url($i['image']) : asset($i['image']) }}" alt="">
+                     @php
+                        $image = $i['image'] ?? '';
+                        $isStorage = Str::startsWith($image, 'home_photos');
+                        $path = $isStorage ? 'storage/' . $image : $image;
+                     @endphp
+                  
+                  <img src="{{ asset($path) }}" alt="">
+                  
                   @endforeach
                     <!-- 
                      OLD

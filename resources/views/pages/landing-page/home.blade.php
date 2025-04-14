@@ -258,13 +258,19 @@
                                         class="absolute bottom-4 left-4 right-4 bg-white bg-opacity-75 p-2 flex justify-between items-center">
                                         <div>
                                             <h2 class="text-sm font-semibold">{{ $item->block }}</h2>
-                                            <div class="flex items-center mt-2 text-gray-600">
-                                                <i class="fas fa-ruler-combined mr-2"></i>
-                                                <span class="text-sm">{{ $item->land_area }} m2</span>
-                                                <i class="fas fa-ruler-combined ml-4 mr-2"></i>
-                                                <span>{{ $item->building_area }} m2</span>
+                                            <div class="flex flex-col items-center mt-2 text-gray-600">
+                                                <div class="flex items-center mr-6">
+                                                    <span class="text-sm font-medium mr-1">Land Area:</span>
+                                                    <span class="text-sm">{{ $item->land_area }} m²</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span class="text-sm font-medium mr-1">Building Area:</span>
+                                                    <span class="text-sm">{{ $item->building_area }} m²</span>
+                                                </div>
                                             </div>
                                         </div>
+                                        
+                                        
                                         <a class="bg-green-600 text-white p-2 rounded-full"
                                             href="{{ route('product.show', $item->id) }}">
                                             <i class="fas fa-arrow-right"></i>
