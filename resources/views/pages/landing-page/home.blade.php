@@ -290,8 +290,8 @@
             <div class="mx-auto w-11/12">
                 <div class="flex flex-col md:flex-row items-start gap-10">
                     <div class="w-full md:w-1/2  ring-2 ring-green-300" id="left-our-facilities">
-                        {{-- <img src="{{ $benefit_title->image ?? '/detail_photos/Lahan Sewa.JPG' }}" class="h-full w-full object-cover"> --}}
-                        <img src="{{ '/detail_photos/Lahan Sewa.JPG' }}" class="h-full w-full object-cover">
+                        <img src="{{ asset('storage/' . $benefit_title->image ?? '/detail_photos/Lahan Sewa.JPG') }} " class="h-full w-full object-cover">
+                        {{-- <img src="{{ '/detail_photos/Lahan Sewa.JPG' }}" class="h-full w-full object-cover"> --}}
                     </div>
                     <div class="w-full md:w-1/2" id="right-our-facilities">
                         <!-- <h2 class="text-green-600 text-sm font-semibold">OUR FACILITIES</h2> -->

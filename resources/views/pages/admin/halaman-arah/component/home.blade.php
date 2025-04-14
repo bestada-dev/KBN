@@ -164,6 +164,7 @@
     </div>
     <div id="Section_3-add-here"></div>
   </div>
+
   <div id="Section_4" class="mb-3">
     <div class="between">
       <h1 style="font-size: 17px; margin-bottom: 1rem; color: rgb(58, 113, 176);">Section 4</h1>
@@ -431,6 +432,7 @@
     </div>
     <div id="Section_6-add-here"></div>
   </div>
+
   <div id="Section_6_Logo" class="mb-3" style="background:#e9f4ff;padding:1.4rem;border-radius:15px">
     <div class="between">
       <h1 style="font-size: 17px; margin-bottom: 1rem; color: rgb(58, 113, 176);">Section 6 Logo</h1>
@@ -531,6 +533,7 @@
     @endif
     <div id="Section_6_Logo-add-here"></div>
   </div>
+
   <div id="Section_7" class="mb-3">
     <div class="between">
       <h1 style="font-size: 17px; margin-bottom: 1rem; color: rgb(58, 113, 176);">Section 7</h1>
@@ -651,6 +654,7 @@
     </div>
     <div id="Section_8-add-here"></div>
   </div>
+  
   <div class="btn-footer">
     <button type="button" class="btn btn-default btn-sm btn-block mt-4">Cancel</button>
     <button type="submit" class="btn btn-main btn-sm btn-block mt-4" id="btn-save">Save </button>

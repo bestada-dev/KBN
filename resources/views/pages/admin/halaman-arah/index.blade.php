@@ -7,41 +7,41 @@
 @section('breadcumbSubtitle', 'Halaman Arah')
 
 @section('content')
-<style>
-.mb-3.test{
-        border-color:#dadada;
-        border-radius:25px;
-        padding:1.8rem 2rem;
-        /* margin:2rem */
-}
- nav#halaman-arah a.nav-link.active {
-    background: white !important;
-    border-bottom: 2px solid #2778c4;
-}
-nav#halaman-arah a:hover {
-    color:white !important;
-    background:#2778c4 !important;
-}
-nav#halaman-arah a,
-nav#halaman-arah a:active,
-nav#halaman-arah a:visited,
-nav#halaman-arah a:focus {
-    font-weight: 500;
-    font-size: 13px;    
-    color: #2778c4 !important;
+    <style>
+        .mb-3.test{
+                border-color:#dadada;
+                border-radius:25px;
+                padding:1.8rem 2rem;
+                /* margin:2rem */
+        }
+        nav#halaman-arah a.nav-link.active {
+            background: white !important;
+            border-bottom: 2px solid #2778c4;
+        }
+        nav#halaman-arah a:hover {
+            color:white !important;
+            background:#2778c4 !important;
+        }
+        nav#halaman-arah a,
+        nav#halaman-arah a:active,
+        nav#halaman-arah a:visited,
+        nav#halaman-arah a:focus {
+            font-weight: 500;
+            font-size: 13px;    
+            color: #2778c4 !important;
 
-}
+        }
 
-nav#halaman-arah {
-    padding: 0px 0 38px;
-    display:flex;
-    justify-content:center;
-    gap:1rem;
-    padding-bottom: 0.5rem;
-}
-</style>
+        nav#halaman-arah {
+            padding: 0px 0 38px;
+            display:flex;
+            justify-content:center;
+            gap:1rem;
+            padding-bottom: 0.5rem;
+        }
+    </style>
 
-<article style="margin-top:5rem;">
+    <article style="margin-top:7rem;">
         <!-- ------------------------- Jika tidak ada data ------------------------- -->
         <div class="TABLE-WITHOUT-SEARCH-BAR" style="display:none">
             <z>
@@ -55,26 +55,30 @@ nav#halaman-arah {
 
         <div class="TABLE-WITHOUT-SEARCH-BAR p-0" >
             <div class="HEADER">
-            <h5>Landing Page</h5>
+                <h5>Landing Page</h5>
             </div>
             <div class="p-4 pt-3">
                 <!-- Navigation Tabs -->
                 <!-- <nav class="nav justify-content-center" id="halaman-arah">
                     <a class="nav-link active" href="#home" data-bs-toggle="tab">Home</a>
                 </nav> -->
+                <a href="{{ url('/superadmin/landing-page/benefit')}}" style="display: inline-block; padding: 5px 15px; background-color: #2d89ef; color: white; border-radius: 5px; text-decoration: none; margin-left: 1120px;">
+                    Edit Benefit
+                </a>                
+                
 
                 <!-- Tab Content -->
                 <div class="tab-content">
                     <!-- Home Tab Pane -->
                     <div class="tab-pane fade show active" id="home">
-                    @include('pages.admin.halaman-arah.component.home')
+                        @include('pages.admin.halaman-arah.component.home')
                     </div>
 
                 </div>
             </div>
-            </div>
-   <!-- Modal for Image Preview -->
-   <div class="modal fade" id="filePreviewModal" tabindex="-1" aria-labelledby="filePreviewModalLabel" aria-hidden="true">
+        </div>
+        <!-- Modal for Image Preview -->
+        <div class="modal fade" id="filePreviewModal" tabindex="-1" aria-labelledby="filePreviewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -95,7 +99,9 @@ nav#halaman-arah {
                 </div>
             </div>
         </div>
+    </article>
 @endsection
+
 @section('js')
 <script>
 $(document).ready(function () {
@@ -263,6 +269,8 @@ $(document).ready(function () {
                 addRules("Contact_Bagian_1_email", {"label":"Email","name":"email","type":"email","required":true,"value":"","gridWidth":12});
                 addRules("Contact__Bagian_2_title1", {"label":"Judul","name":"title1","type":"text","required":true,"value":"","gridWidth":12});
                 addRules("Contact__Bagian_2_description1", {"label":"Deskripsi","name":"description1","type":"textarea","required":false,"value":"","gridWidth":12});
+                
+                addRules("Home_Bagian_10_benefit_title_1", {"label":"Title","name":"title","type":"text","required":true,"value":"","gridWidth":12});
                                                 
                     return rules;
             }
@@ -703,9 +711,7 @@ $(document).ready(function () {
                         });
                 }
             }
-
-            // Load and populate fields with dynamic data
-                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                
             
         });
     </script>

@@ -222,8 +222,12 @@ class LandingPageController extends Controller
             $dataTosent['searchResult'] = $resultSearch;
         }
 
+        $benefit_title = BenefitTitle::firstOrFail();
+        $benefit_list = BenefitList::all();
+
         // dd($dataTosent);
-        return view('pages.landing-page.home', $dataTosent);
+        // return view('pages.landing-page.home', $dataTosent);
+        return view('pages.landing-page.home', get_defined_vars());
         // ->with($resultSearch)
         // ->with('zoning', $zoning)
         // ->with('search', $isSearch);

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 
 use App\Form;
+use App\Http\Controllers\Superadmin\SuperadminLandingPageController;
 
 Route::get('private-files/{folder}/{fileName}', function ($folder,$fileName) {
     $filePath = storage_path('app/private/'. $folder . '/' . $fileName);
@@ -39,6 +40,9 @@ Route::middleware([LoginCheck::class])->group(function(){
         Route::GET('/landing-page', function () {
             return view('pages.admin.halaman-arah.index');
         })->name('halaman-arah');
+
+        Route::GET('/landing-page/benefit', 'Superadmin\SuperadminLandingPageController@get_benefit')->name('pages.admin.landing_pages.get_benefit');
+        Route::put('/landing-page/benefit/update', [SuperadminLandingPageController::class, 'update_benefit']);
 
         Route::prefix('panduan')->group(function () {
             Route::GET('/', 'Superadmin\PanduanController@index')->name('pages.admin.panduan.index');
