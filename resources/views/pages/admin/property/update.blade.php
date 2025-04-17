@@ -72,12 +72,12 @@
                         <label>
                             <input type="radio" class="radio" name="type" value="Bounded"
                                 {{ old('type', $data_edit->type) == 'Bounded' ? 'checked' : '' }}>
-                            Bounded
+                            Bonded
                         </label>
                         <label style="margin-left: 20px;">
                             <input type="radio" class="radio" name="type" value="General"
                                 {{ old('type', $data_edit->type) == 'General' ? 'checked' : '' }}>
-                            General
+                            Non Bonded
                         </label>
                     </div>
                     <span class="text-danger error-message" id="type-error"></span>

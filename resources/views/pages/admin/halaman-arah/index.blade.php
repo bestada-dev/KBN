@@ -62,7 +62,7 @@
                 <!-- <nav class="nav justify-content-center" id="halaman-arah">
                     <a class="nav-link active" href="#home" data-bs-toggle="tab">Home</a>
                 </nav> -->
-                <a href="{{ url('/superadmin/landing-page/benefit')}}" style="display: inline-block; padding: 5px 15px; background-color: #2d89ef; color: white; border-radius: 5px; text-decoration: none; margin-left: 1120px;">
+                <a href="{{ url('/superadmin/landing-page/benefit')}}" style="display: inline-block; padding: 5px 15px; background-color: #2d89ef; color: white; border-radius: 5px; text-decoration: none; margin-left: 970px;">
                     Edit Benefit
                 </a>                
                 
